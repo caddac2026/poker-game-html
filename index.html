@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Game with Bots</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎰 Poker Game</h1>
+            <div class="header-info">
+                <div class="chip-stack">Chips: <span id="playerChips">1000</span></div>
+                <div class="pot">Pot: <span id="pot">0</span></div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Game Table -->
+            <div class="table">
+                <!-- Community Cards -->
+                <div class="community-cards">
+                    <div class="cards-label">Community Cards</div>
+                    <div class="cards-container" id="communityCards">
+                        <div class="card empty"></div>
+                        <div class="card empty"></div>
+                        <div class="card empty"></div>
+                        <div class="card empty"></div>
+                        <div class="card empty"></div>
+                    </div>
+                </div>
+
+                <!-- Players Seated -->
+                <div class="players-container">
+                    <div class="player-seat" id="player1">
+                        <div class="player-info">
+                            <div class="player-name">Bot - Aggressive</div>
+                            <div class="player-chips">500</div>
+                        </div>
+                        <div class="player-cards">
+                            <div class="card bot-card"></div>
+                            <div class="card bot-card"></div>
+                        </div>
+                        <div class="player-action"></div>
+                    </div>
+
+                    <div class="player-seat" id="player2">
+                        <div class="player-info">
+                            <div class="player-name">Bot - Conservative</div>
+                            <div class="player-chips">500</div>
+                        </div>
+                        <div class="player-cards">
+                            <div class="card bot-card"></div>
+                            <div class="card bot-card"></div>
+                        </div>
+                        <div class="player-action"></div>
+                    </div>
+
+                    <div class="player-seat" id="player3">
+                        <div class="player-info">
+                            <div class="player-name">Bot - Balanced</div>
+                            <div class="player-chips">500</div>
+                        </div>
+                        <div class="player-cards">
+                            <div class="card bot-card"></div>
+                            <div class="card bot-card"></div>
+                        </div>
+                        <div class="player-action"></div>
+                    </div>
+
+                    <div class="player-seat player-human" id="player0">
+                        <div class="player-info">
+                            <div class="player-name">You</div>
+                            <div class="player-chips" id="myChips">1000</div>
+                        </div>
+                        <div class="player-cards">
+                            <div class="card" id="card0"></div>
+                            <div class="card" id="card1"></div>
+                        </div>
+                        <div class="player-action"></div>
+                    </div>
+                </div>
+
+                <!-- Dealer Button -->
+                <div class="dealer-button" id="dealerButton"></div>
+            </div>
+
+            <!-- Game Status -->
+            <div class="game-status" id="gameStatus">
+                Game Ready - Click "Deal Hand" to start
+            </div>
+
+            <!-- Player Hand -->
+            <div class="hand-display" id="handDisplay">
+                Your Hand: -
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons" id="actionButtons">
+                <button class="btn btn-primary" id="dealBtn" onclick="dealHand()">Deal Hand</button>
+                <button class="btn btn-secondary" id="foldBtn" onclick="playerFold()" style="display: none;">Fold</button>
+                <button class="btn btn-secondary" id="checkBtn" onclick="playerCheck()" style="display: none;">Check</button>
+                <button class="btn btn-secondary" id="callBtn" onclick="playerCall()" style="display: none;">Call</button>
+                <button class="btn btn-secondary" id="raiseBtn" onclick="showRaiseModal()" style="display: none;">Raise</button>
+                <button class="btn btn-secondary" id="allInBtn" onclick="playerAllIn()" style="display: none;">All In</button>
+            </div>
+
+            <!-- Raise Modal -->
+            <div id="raiseModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Raise Amount</h3>
+                    <input type="number" id="raiseAmount" min="0" placeholder="Enter amount">
+                    <div class="modal-buttons">
+                        <button class="btn btn-primary" onclick="playerRaise()">Raise</button>
+                        <button class="btn btn-secondary" onclick="closeRaiseModal()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game History -->
+            <div class="game-history">
+                <h3>Game Log</h3>
+                <div id="gameLog" class="log-content"></div>
+            </div>
+        </main>
+
+        <footer>
+            <button class="btn btn-primary" id="newGameBtn" onclick="newGame()">New Game</button>
+            <button class="btn btn-secondary" id="resetBtn" onclick="resetGame()">Reset</button>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
